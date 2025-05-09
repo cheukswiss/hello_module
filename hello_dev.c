@@ -19,18 +19,19 @@ static struct platform_device hello_device = {
 static int hello_dev_init(void)
 {
 	int ret;
-        pr_info("Hello, world\n");
+	pr_info("Hello, world\n");
 
 	ret = platform_device_register(&hello_device);
 	if (ret < 0) {
 		pr_err("Fail to register hello_device(%d)\n", ret);
 	}
 
-        return ret;
+	return ret;
 }
+
 static void hello_dev_exit(void)
 {
-        pr_info("Goodbye, cruel world\n");
+	pr_info("Goodbye, cruel world\n");
 	platform_device_unregister(&hello_device);
 }
 

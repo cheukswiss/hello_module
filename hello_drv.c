@@ -33,18 +33,18 @@ static struct platform_driver ohmy_jack_driver = {
 static int hello_init(void)
 {
 	int ret;
-        pr_info("Hello, jack\n");
+	pr_info("Hello, jack\n");
 
 	ret = platform_driver_register(&ohmy_jack_driver);
 	if (ret < 0) {
 		pr_err("Fail to register ohmy_jack_driver(%d)\n", ret);
 	}
 
-        return ret;
+	return ret;
 }
 static void hello_exit(void)
 {
-        pr_info("Goodbye, jack\n");
+	pr_info("Goodbye, jack\n");
 	platform_driver_unregister(&ohmy_jack_driver);
 }
 
