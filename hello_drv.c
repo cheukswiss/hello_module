@@ -2,6 +2,7 @@
 #include <linux/module.h>
 #include <linux/platform_device.h>
 #include <linux/mod_devicetable.h>
+#include <linux/version.h>
 
 static int ohmy_jack_probe(struct platform_device *pdev)
 {
@@ -9,11 +10,18 @@ static int ohmy_jack_probe(struct platform_device *pdev)
 	return 0;
 }
  
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 10, 0)
+static void ohmy_jack_remove(struct platform_device *pdev)
+{
+	dev_info(&pdev->dev, "%s\n", __func__);
+}
+#else
 static int ohmy_jack_remove(struct platform_device *pdev)
 {
 	dev_info(&pdev->dev, "%s\n", __func__);
 	return 0;
 }
+#endif
 
 static const struct platform_device_id id_jack_table[] = {
 	{"hello"},
